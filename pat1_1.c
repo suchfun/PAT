@@ -1,9 +1,7 @@
 #include<stdio.h>
 #include<string.h>
 
-#define bool int;
-#define ture 1;
-#define false 0;
+
 /*
 1001:3n+1
 */ 
@@ -202,7 +200,7 @@
 //	return 0;
 //}
 /*
-1007： 利用一个定理——如果一个数是合数，那么它的最小质因数肯定小于等于他的平方根。否则，它就是素数。 
+1007：利用一个定理——如果一个数是合数，那么它的最小质因数肯定小于等于他的平方根。否则，它就是素数。 
 */ 
 //int isPrime(int n){
 //	int i;
@@ -285,7 +283,7 @@
 //	return 0;
 //}
 /*
-1011：A+B>C  注意：要用long,对应的格式是%ld 
+1011：A+B>C  注意：1.要用long 2.对应的格式是%ld 
 */
 //char * compare(long i,long j,long k){
 //	if(i+j>k)	return "true";
@@ -304,27 +302,131 @@
 //	return 0;
 //} 
 /*
-1012:数字分类
+//1012:数字分类   未解决！！！！！！ 
+//*/
+//int main(){
+//	int n,i,j,A1=0,A2=0,A3=0,A5=0;
+//	int A1_count=0,A2_count=0,A3_count=0,A4_count=0,A5_count=0;
+//	float A4=0.0;
+//	int nums[1000];
+//	scanf("%d",&n);
+//	for(i=0;i<n;++i){
+//		scanf("%d",&nums[i]);
+//	}
+//	for(i=0;i<n;++i){
+//		if(nums[i]%10==0){
+//			A1+=nums[i];
+//			++A1_count;	
+//		}	
+//		else if(nums[i]%5==1){
+//			++A2_count;
+//			if(A2_count%2==1){
+//				A2+=nums[i];
+//			}
+//			else A2-=nums[i];
+//		}
+//		else if(nums[i]%5==2){			
+//			++A3;
+//			++A3_count;	
+//		}
+//		else if(nums[i]%5==3){
+//			++A4_count;
+//			A4+=nums[i];
+//			A4/=A4_count;
+//		}
+//		else if(nums[i]%5==4){
+//			++A5_count;
+//			if(A5<nums[i]){
+//				A5=nums[i];	
+//			}
+//		}
+//	}
+//	if(A1_count!=0) printf("%d ",A1);
+//	else printf("N ");
+//	if(A2_count!=0) printf("%d ",A2);
+//	else printf("N ");
+//	if(A3_count!=0) printf("%d ",A3);
+//	else printf("N ");
+//	if(A4_count!=0) printf("%.1f ",A4);
+//	else printf("N ");
+//	if(A5_count!=0) printf("%d",A5);
+//	else printf("N");
+//	return 0;
+//}
+/*
+1013：数素数 
 */
-
-void main(){
-	int n,i,j,A1,A2,A3;
-	int A2A[1000];
-	int nums[1000];
-	scanf("%d",&n);
-	for(i=0;i<n;++i){
-		scanf("%d",&nums[i]);
-	}
-	for(i=0;i<n;++i){
-		if(nums[i]%5==0&&nums[i]%2==0)	A1+=nums[i];
-		else if(nums[i]%5==1){
-			
-		}
-		else if(nums[i]%5==2) ++A3;
-		else if()
-	}
-	
-}
- 
+//#include<math.h>
+////判断一个数是否是素数 
+//int isPrime(int n){
+//	int i;
+//	for(i=2;i<=sqrt(n);++i){
+//		if(n%i==0)	return 0;
+//	}
+//	return 1;
+//}
+//
+//int main(){
+//	int M,N;
+//	scanf("%d",&M);
+//	scanf("%d",&N);
+//	int i,num=0,j=0;
+//	int a[1000];
+//	for(i=2;;++i){                     //将第M个素数装入数组 
+//		num+=isPrime(i);
+//		if(num==M){
+//			a[j++]=i;break;
+//		}
+//	}
+//	while(num<N){
+//		if(isPrime(++i)){
+//			++num;
+//			a[j++]=i;
+//		}
+//	}
+//	for(i=1;i<=j-1;++i){
+//		if(i%10!=0)	printf("%d ",a[i-1]);
+//		else	printf("%d\n",a[i-1]);
+//	}
+//	printf("%d",a[j-1]);
+//	return 0;
+//}	
+/*
+1014:福尔摩斯的约会 
+*/
+//int main(){
+//	char s1[61];
+//	char s2[61];
+//	char s3[61];
+//	char s4[61];
+//	int day,hour,min;
+//	gets(s1);gets(s2);gets(s3);gets(s4);
+//	char days[7][4]={"MON","TUE","WED","THU","FRI","SAT","SUN"};
+//	int i,j;
+//	for(i=0;i<61;++i){
+//		if(  (s1[i]==s2[i])  &&  'A'<=s1[i]  &&  s1[i]<='G'){
+//			day=s1[i]-'A';
+//			break;
+//		}
+//	}
+//	for(j=i+1;j<61;++j){
+//		//不能写成'0'<=s[i]<='9'!!! 
+//		if( (s1[j]==s2[j])  &&  (('0'<=s1[j]&&s1[j]<='9')||('A'<=s1[j]&&s1[j]<='N')) ){
+//			if('0'<=s1[j]  &&  s1[j]<='9'){
+//				hour=s1[j]-'0';break;
+//			}
+//			else{
+//				hour=s1[j]-'A'+10;break;
+//			}
+//		}
+//	}
+//	for(i=0;i<61;++i){
+//		if(  (s3[i]==s4[i])  &&  (('A'<=s3[i]&&s3[i]<='Z')  ||  ('a'<=s3[i]&&s3[i]<='z')) ){
+//			min=i;break;
+//		}
+//	}
+//	printf("%s %02d:%02d",days[day],hour,min);
+//	return 0;
+//}
 
 

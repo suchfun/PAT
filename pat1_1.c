@@ -1,7 +1,5 @@
 #include<stdio.h>
 #include<string.h>
-
-
 /*
 1001:3n+1
 */ 
@@ -59,7 +57,6 @@
 //	printf("%s",pingyin[stack[front]]);
 //	return 0;  
 //}
-
 /*
 1004:成绩排名 
 */
@@ -264,7 +261,7 @@
 //	return 0;
 //}
 /*
-1009：说反话 
+1009：说反话   1.利用递归反向输出 2.将一个字符串数组切割 
 */
 //void reprint(){
 //	char *str=strtok(NULL," ");
@@ -428,5 +425,163 @@
 //	printf("%s %02d:%02d",days[day],hour,min);
 //	return 0;
 //}
+/*
+日了狗了的德才论，用C写真TM吃力 
+*/
+//typedef struct student{
+//	int No;
+//	int D;
+//	int	C;
+//	int sum;  //计算公式是sum=2*D+C 
+//}student;
+//void QuickSort(student * stu,int start ,int end){
+//	if(start<end){
+//		int i,j;
+//		student temp;
+//		i=start;
+//		j=end;
+//		temp=stu[start];
+//		while(i<j){	
+//			while(i<j&&  (stu[j].sum  <=  temp.sum)  ) --j;
+//			if(i<j)	{
+//				stu[i++]=stu[j];
+////				stu[i].No = stu[j].No;
+////				stu[i].C = stu[j].C;
+////				stu[i].D = stu[j].D;
+////				stu[i].sum = stu[j].sum;
+////				++i;
+//			}
+//			while(i<j&&  (stu[i].sum>temp.sum)  )	++i;
+//			if(i<j){
+//				stu[j--]=stu[i];
+////				stu[j].No = stu[i].No;
+////				stu[j].C = stu[i].C;
+////				stu[j].D = stu[i].D;
+////				stu[j].sum = stu[i].sum;
+////				--j;
+//				//printf("%d %d %d %d %d\n",j,stu[j].No,stu[j].C,stu[j].D,stu[j].sum);
+//			}
+//		}
+//		stu[i]=temp;
+//		QuickSort(stu,start,i-1);
+//		QuickSort(stu,i+1,end);
+//	}
+//}
+//int main(){
+//	student  stu[10000];
+//	int num,L,H,i,j=0;
+//	int No_temp,C_temp,D_temp;
+//	scanf("%d %d %d",&num,&L,&H);
+//	int num0=num;
+//	for(i=0;i<num;++i){
+//		scanf("%d %d %d",&No_temp,&C_temp,&D_temp);
+//		if(C_temp>=L&&D_temp>=L){
+//			stu[j].No=No_temp;
+//			stu[j].C=C_temp;
+//			stu[j].D=D_temp;
+//			stu[j].sum=D_temp+C_temp;
+//			++j;
+//		}else	--num0;
+//	}
+//	printf("%d\n",num0);
+//	return 0;
+//} 
+/*
+1047
+*/
+//#include<math.h>
+//#include<stdio.h>
+//#include<string.h>
+//int char2int(char * str,int n){
+//  int num=n,i,x=0;
+//  for(i=0;i<n;++i){
+//    x=x+(str[i]-'0')*pow(10,--num);
+//  }
+//  return x;
+//}
+//int main(){
+//  int i,j,n,count_team,len,flag_team=1,flag_score=1,count_score,score_len;
+//  int info[10000][2];
+//  int team,score;
+//  char buf[5];
+//  scanf("%d",&n);
+///*
+//如果不加上getchar(),或者fflush(stdin),那么第一个gets()会跳过，
+//因为在执行gets时，前面有输入，且是以回车结束的，这个回车被保存在输入缓存，
+//gets会读到这个字符，结束读取字符的操作 
+//*/
+//  //getchar();
+//  fflush(stdin);
+///*
+//gets()函数自动以回车（windows是\r\n,unix是\n)为结束符 ,
+//scanf()函数空格和回车都会自动作为字符串的结束符。
+//*/
+//  char str[10000][20];
+//  for(i=0;i<n;i++){
+//    gets(str[i]);
+//    count_team=0;
+//    count_score=0;
+//    flag_team=1;
+//    flag_score=1;
+//    len=strlen(str[i]);
+//    for(j=0;j<len;++j){
+//      if((str[i][j]!='-')&&flag_team){  //flag的作用：避免将队伍号记录后又将后面的字符放进buf 
+//        buf[count_team++]=str[i][j];
+//        continue;
+//      }
+//      else if(flag_team){
+//        info[i][0]=char2int(buf,count_team);
+//        flag_team=0;  
+//        continue;
+//      }
+//      if((str[i][j]!=' ')&&(flag_score)){
+//        score_len=len-2-j;
+//        continue;
+//      }
+//      flag_score=0;  
+//      buf[count_score++]=str[i][j+1];
+//      if(count_score==score_len){
+//        info[i][1]=char2int(buf,count_score);
+//        break;
+//      }    
+//    }
+//  }
+//  int max_score=0;
+//  for(i=0;i<n;++i){
+//    score=0;
+//    for(j=0;j<n;++j){
+//      if(info[j][0]==info[i][0]){
+//        score+=info[j][1];
+//      }
+//    }
+//    if(max_score<score){
+//      team=info[i][0];
+//      max_score=score;
+//    }
+//  }
+//  printf("%d %d",team,max_score);  
+//  return 0;
+//} 
+/*------------------liuchuo的答案，自己答案太傻逼了-----------------------*/
+//很好的方法，既然要申请一定数量的数组，那就放开手用，不用count解决问题 
+//int main() {
+//    int n;
+//    scanf("%d",&n);
+//    int i,t, num, score;
+//    int team[1001] = {0};
+//    for (i = 1; i <= n; i++) {
+//        scanf("%d-%d %d", &t, &num, &score);
+//        team[t] += score;
+//    }
+//    int max = 0;
+//    for (i = 0; i < 1001; i++) {
+//        if (team[max] < team[i])
+//            max = i;
+//    }
+//    printf("%d %d",max,team[max]);
+//    return 0;
+//}
+
+
 
 

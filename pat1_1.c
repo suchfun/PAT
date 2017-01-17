@@ -581,7 +581,88 @@
 //    printf("%d %d",max,team[max]);
 //    return 0;
 //}
-
-
-
+/*1016*/
+//#include<string.h>
+//int main(){
+//	char A[10],B[10];
+//	int A_len,B_len,i,j,DA,DB,PA,PB;
+//	scanf("%s",A);scanf("%d",&DA);
+//	scanf("%s",B);scanf("%d",&DB);
+//	A_len=strlen(A);
+//	B_len=strlen(B);
+//	PA=0;PB=0;
+//	for(i=0;i<A_len;++i){
+//		if((A[i]-'0')==DA)	PA=10*PA+DA;	
+//	}
+//	for(i=0;i<B_len;++i){
+//		if((B[i]-'0')==DB)	PB=10*PB+DB;	
+//	}
+//	printf("%d",PA+PB);
+//	return 0;
+//}
+/*1017*/
+//char A[1001];
+//int B;
+//int divide(int i,int j){
+//	if(A[j]!='\0'){
+//		if(i>=B){
+//			printf("%d",i/B);
+//			printf("%d",((i-B)*10+(A[j]-'0'))/B);
+//			divide(((i-B)*10+(A[j]-'0'))%B,j+1);
+//		}
+//		else{
+//			printf("%d",(i*10+(A[j]-'0'))/B);
+//			divide(  (  i*10+(A[j]-'0')  )%B  ,j+1);
+//		}	
+//	}else{
+//		if(i>B)
+//			printf("%d",i/B);
+//		return i%B;
+//	}
+//}
+//int main(){
+//	char shang[1001];
+//	int yushu=0;
+//	scanf("%s",A);
+//	scanf("%d",&B);	
+//	if(A[1]!='\0'){
+//		if((A[0]-'0')>=B){
+//			printf("%d",(A[0]-'0')/B);
+//			printf("%d",((A[0]-'0'-B)*10+(A[1]-'0'))/B);
+//			yushu=divide(((A[0]-'0'-B)*10+(A[1]-'0'))%B,2);
+//		}
+//		else{
+//			printf("%d",((A[0]-'0')*10+(A[1]-'0'))/B,((A[0]-'0')*10+(A[1]-'0'))%B,2);
+//			yushu=divide(((A[0]-'0')*10+(A[1]-'0'))%B,2);
+//		}	
+//	}else{	
+//		printf("%d",(A[0]-'0')/B);
+//		yushu=(A[0]-'0')%B;
+//	}
+//	printf(" %d",yushu);
+//	return 0;
+//}
+/* liuchuo的答案,发现自己总是把事情想复杂   */
+//int main() {
+//    char s[1001];
+//    scanf("%s",s);
+//    int a,i;
+//    scanf("%d",&a);
+//    int len ;
+//	len = strlen(s);
+//    int t = 0;
+//    int temp = 0;
+//    t = (s[0] - '0') / a;
+//    if (t != 0 || len == 1) {    
+//		printf("%d",t);
+//    }
+//    temp = (s[0] - '0') % a;
+//    for (i = 1; i < len; i++) {
+//        t = (temp * 10 + s[i] - '0') / a;
+//        printf("%d",t);
+//        temp = (temp * 10 + s[i] - '0') % a;
+//    }
+//    printf(" %d",temp);
+//    return 0;
+//}
 

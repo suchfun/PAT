@@ -26,8 +26,8 @@ typedef struct AGraph{
 4
 */
 int visit[maxSize];
-AGraph *agraph;
-ArcNode arcs[7];
+AGraph *agraph;  //注意，定义了指针一定要给一个地址，不然这个指针就不知道指向哪里了 
+ArcNode arcs[7];	//不需要给arcs一个地址，只需要初始化，如果没有初始化，编译器会随意赋值 
 void initAGraph(){
 	int *j;
 	int i;

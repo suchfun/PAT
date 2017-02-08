@@ -29,21 +29,24 @@ int main(){
 	if(n%2==0)	half=n/2;
 	else	half=n/2+1;
 	
-	char s1[21],s2[21];
-	s1[0]=s2[0]=c;s1[n-1]=s2[n-1]=c;
 	int i,j;
-	for(i=1;i<n-1;++i){
-		s2[i]=' ';
-		s1[i]=c;
-	}
 	
-	s1[n]=s2[n]=' ';//注意一定要加上这句，否则输出的时候，如果编译器赋的初值不是‘\0’,会一直以为字符串未结束。 
+	for(i=0;i<n;++i){
+		printf("%c",c);
+	} 
+	printf("\n");
 	
-	printf("%s\n",s1);
 	for(i=0;i<half-2;++i){
-		printf("%s\n",s2);
+		printf("%c",c);
+		for(j=0;j<n-2;++j){
+			printf(" ");
+		}
+		printf("%c\n",c);
 	}
-	printf("%s",s1);
+	
+	for(i=0;i<n;++i){
+		printf("%c",c);
+	} 
 	return 0;
 }
 

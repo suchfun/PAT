@@ -229,3 +229,5 @@
 1. ###判断一个浮点数的值是否为0  ##
 
 	`if(f==0)` 这样判断是不精确的，应该 `if(fabs(f)<1e^-7)`
+
+	为什么这样做呢？这篇博文我看了一大半，没看完：[http://www.cnblogs.com/kubixuesheng/p/4107309.html](http://www.cnblogs.com/kubixuesheng/p/4107309.html "dashuai的博客")

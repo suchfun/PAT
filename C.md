@@ -226,3 +226,6 @@
 
 	至于算法为什么是这样：[https://www.zhihu.com/question/30498489](https://www.zhihu.com/question/30498489 "知乎")
 	
+1. ###判断一个浮点数的值是否为0  ##
+
+	`if(f==0)` 这样判断是不精确的，应该 `if(fabs(f)<1e^-7)`

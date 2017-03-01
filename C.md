@@ -231,3 +231,48 @@
 	`if(f==0)` 这样判断是不精确的，应该 `if(fabs(f)<1e^-7)`
 
 	为什么这样做呢？这篇博文我看了一大半，没看完：[http://www.cnblogs.com/kubixuesheng/p/4107309.html](http://www.cnblogs.com/kubixuesheng/p/4107309.html "dashuai的博客")
+
+1. ###约瑟夫环  ##
+
+	简单说一下什么是约瑟夫环问题：
+
+	比如现在有50人站成一个圈，编号从1-50，我规定从1开始报数，每次数到3的人退出，下一个人重新从1开始报数，直到最后一个人退出。
+
+	编程思路就是考虑三种情况：
+	
+	- 数到这个人时，他已经被淘汰，则跳到下一个人，报数不增加。
+	- 数到这个人时，他还未被淘汰，且刚好数到三，则将该数组元素值置为0，继续数下一个人且报数从0开始。
+	- 数到这个人实，他还未被淘汰，但还未数到三，则继续数下一个人，报数增加1。
+	
+			int main(){
+				int sum[100]={0};
+				int n;  //people number
+				int m=1;  //count number
+				int remain; //people remained
+				int i;
+				scanf("%d",&n);
+				remain=n;
+				for(i=0;i<n;i++){
+					sum[i]=i+1;
+				}
+				i=0;
+				while(remain!=1){
+					if( sum[i%n]==0  ){  		//如果这个人已经被淘汰了，那么不计数
+						i=(i+1)%n;
+					}
+					else if(m==3){  		//如果数到三，且这个人未被淘汰
+						sum[i%n]=0;
+						remain--;
+						m=1;
+						i=(i+1)%n;
+					}else{  				//如果这个人未被淘汰，但没数到3，则 m++,i=(i+1)%n 
+						m++;
+						i=(i+1)%n;
+					}
+				}
+				for(i=0;i<n;i++){
+					if(sum[i]) break;
+				}
+				printf("last winner: %d",i+1);
+				return 0;
+			} 

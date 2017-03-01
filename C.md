@@ -3,7 +3,7 @@
 
 
 
-1. ## `char s1[100]="hello";` 与 `char *s2="hello";` 的区别 ##
+1. ### `char s1[100]="hello";` 与 `char *s2="hello";` 的区别 ##
 
 	 数组声明的"hello"存储在栈中，所以s1[1]='c'; legal!
 
@@ -28,7 +28,7 @@
 		+----------------+
 
 
-1. ## 求两个数的最大公约数 ##
+1. ### 求两个数的最大公约数 ##
 
 	辗转相除法：用 （前一次的）除数%（前一次的）余数，直到余数为0，输出除数。
 
@@ -42,9 +42,9 @@
 			return m;
 		}
 
-1. ## 尾插法可以实现逆序，而且可以保留住头指针 ##
+1. ### 尾插法可以实现逆序，而且可以保留住头指针 ##
 
-1. ## 内存对齐 ##
+1. ### 内存对齐 ##
 
 	讲道理，计算机的内存地址的单位是字节（一个地址对应的是1字节的内存），这样CPU可以访问到任何数据。但是这样不是很高效，想想，C语言中一个int型变量占4字节，那CPU要读取这个整型就需要4次读取，比说麻烦不。
 	
@@ -101,3 +101,82 @@
 	这时，sizeof(B) 返回值是6。
 
 	关于更多关于字节对齐:[http://blog.csdn.net/hbuxiaofei/article/details/9491953](http://blog.csdn.net/hbuxiaofei/article/details/9491953 "beachboyy的博客")
+
+1. ### 判断素数的方法 ##
+	如果一个数，不能被所有 小于这个数开根号 的数整除，那么它就是素数，否则是合数。
+	
+		int isPrime(int n){
+			int i;
+			for(i=2;i*i<n;i++){
+				if(n%i==0) return 0;
+			}
+			return 1;
+		}
+
+1. ### 用栈实现符号匹配 ##
+
+	如果是'('则入栈，')'则出栈：
+		
+		int main(){
+			FILE *in;
+			if(!(in=fopen(".\\suchfun.c","r"))){
+				printf("open error");
+			}
+			char stack[1000];
+			int top=-1;
+			 
+			while(!feof(in)){
+				char ch=fgetc(in);
+				if(ch=='('){
+					stack[++top]='(';
+				}
+				if(ch==')'){
+					if(top==-1){
+						--top;  //这里之所以加上这句。是因为避免与while循环外面输出success 的条件重复 
+						break;
+					}
+					--top;  
+				} 
+			}
+			if(top==-1)	printf("success");
+			else	printf("fail"); 
+			return 0;
+		} 
+
+1. ### 说一说递归 ###
+
+	说废话，先看代码：
+
+		void MinMax(int *a,int n,int *min,int *max){
+			if(n==0) return;
+			if(a[n-1]>*max) *max=a[n-1];
+			if(a[n-2]<*min) *min=a[n-1];
+			MinMax(a,n-1,min,max);	
+		} 
+	上面是一个递归求最大值最小值的函数。下面是累加和阶乘的代码：
+
+		int LJ(int n){   //累加 
+			if(n>=0){
+				if(n==0)	return 0;
+				if(n==1)	return 1;
+				else{
+					return n+JC(n-1);
+				}		
+			}
+		}
+		int JC(int n){  //阶乘 
+			if(n>=0){
+				if(n==0||n==1)	return 1;
+				else{
+					return n*JC(n-1);
+				}
+			}
+			
+		}
+	这是我理解的典型的两种递归：进入递归(the fomer)，返回递归(the later)。（我自个根据理解编造的名字）
+
+	我打个比方来形容一下这两种递归的区别:
+	
+	递归是用栈来实现的，我们可以想象成，调用一个函数就开一扇门，这样一扇一扇嵌套着。而第一种递归就好比每次进入一扇门就捡一颗糖，到达终点的时候糖就捡完了，从一扇扇门返回来的时候基本什么都没做。第二种就好比，先闯进一扇扇的门，闯入的过程基本什么都没做，返回的时候，开一扇门捡一颗糖，回到终点任务完成。
+
+	

@@ -276,3 +276,42 @@
 				printf("last winner: %d",i+1);
 				return 0;
 			} 
+
+1. ### 给结构体数组排序的时候碰到的坑
+
+	冒泡排序的核心代码：
+	
+		for(i=0 ; i<n-1 && flag ; i++){
+			flag=0;
+			for(j=0;j<n-1-i;j++){
+				if(a[j]>a[j+1]){
+					temp=a[j];
+					a[j]=a[j+1];
+					a[j+1]=temp;
+					flag=1;
+				}
+			}
+		}
+		因为a[j]等价于*(a+j),所以结构体数组的冒泡排序很容易写成：
+		for(i=0 ; i<n && flag ; ++i){
+			flag=0;
+			for(j=0;j<n-1-i;j++){
+				if( *(p+j+1).score < *(p+j).score ）{
+					temp=*(p+j);
+					*(p+j)=*(p+j+1);
+					*(p+j+1)=temp;
+				}
+				flag=1;
+			}
+		}
+
+	但是总是报错：
+	`[Error] request for member 'score' in something not a structure or union`，就是说score这个成员不在某个结构体或联合里面。
+	如果改成`(p+j+1)->score < (p+j)->score)`程序当然就顺理成章了，但是原来那种写法为什么会出错？
+
+	最后我将那句错误代码改成：`（*(p+j+1)）.score < （*(p+j)）.score`，程序就对了。所以呀，是因为' * ' 与 ' . ' 这两个运算符的优先级是不一样的，成员取值运算符（.或->）的优先级比取值运算符(*)的优先级要高。
+
+	![C语言运算符优先级表](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488523019342&di=a791157ebe2a4a6ee845abbb774425a4&imgtype=0&src=http%3A%2F%2Fimage64.360doc.com%2FDownloadImg%2F2013%2F09%2F0516%2F34997693_1.jpg)
+	
+	
+	

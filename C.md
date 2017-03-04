@@ -16,15 +16,15 @@
 		+----------------+
 		|  内核虚拟内存	 |
 		+----------------+
-		|	栈区          |   这个部分保存函数中的局部变量，系统自动回收
+		|	栈区          |    这个部分保存函数中的局部变量，系统自动回收
 		+----------------+
 		|共享库的内存映射  |
 		+----------------+
-		|	堆区	        |	这个部分保存malloc,new出来的变量，需要free,delete
+		|	堆区	        |	 这个部分保存malloc,new出来的变量，需要free,delete
 		+----------------+
-		|	可读写区      |	保存全局变量和static变量
+		|	可读写区      |		保存全局变量和static变量
 		+----------------+
-		|    只读区       |	保存常量
+		|    只读区       |	 保存常量
 		+----------------+
 
 
@@ -313,5 +313,38 @@
 
 	![C语言运算符优先级表](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1488523019342&di=a791157ebe2a4a6ee845abbb774425a4&imgtype=0&src=http%3A%2F%2Fimage64.360doc.com%2FDownloadImg%2F2013%2F09%2F0516%2F34997693_1.jpg)
 	
+1. ### 将一个整数分解成素数 ##
+
+		int isPrime(int n,int * min){  //判断是否是素数，并带回它的最小因子 
+			int i;
+			for(i=2;i*i<n;i++){
+				if(n%i==0){
+					*min=i;    //注意这句话不要写成min=i了 
+					return 0;
+				}
+			} 
+			return 1;
+		}
+		
+		void prime_min(int n){
+			int min;
+			if(isPrime(n,&min)){
+				printf("%d",n);
+				return;
+			}
+			else{
+				printf("%d*",min);
+				prime_min(n/min);			
+			}
+		} 
+		
+		int main(){
+			int n;
+			printf("Enter an integer: ");
+			scanf("%d",&n);
+			printf("%d=",n);
+			prime_min(n);
+			return 0;
+		}
 	
 	

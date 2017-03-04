@@ -347,4 +347,64 @@
 			return 0;
 		}
 	
+1. ###交换俩字符串所想
 	
+	错误的写法：
+		
+		void swap(char *p, char *q)
+		{
+			char *temp;
+			*temp=*p;
+			*p=*q;
+			*q=*temp;
+		}
+
+	错误之处就在于形参的变化不改变实参的值。
+
+	正确的写法应该是：
+
+		void swap(char *p, char *q)
+		{
+		    char  temp[100];		        
+			Strcpy(temp,p);
+		    Strcpy(p,q);
+			Strcpy(q,temp);
+		}
+		or
+		void swap(char **p,char **q)
+		{
+			char *temp;
+			temp=*p;
+			*p=*q;
+			*q=temp;
+		}
+
+	这种题目要注意的地方一句话总结：要想在所调用的函数中改变一个变量，就传变量的地址，而在函数中要对传入的地址【取值】进行操作，才能达到目的。对，其实是一个词，【取值】！
+
+1. ###注意！有坑。（当传给函数两个指向同一地址的指针时）
+			
+		void MinMaxValue(int *a,int n,int *max,int *min){
+			if(n!=0){
+				if(*a>*max) *max=*a;
+				if(*a<*min)	*min=*a;
+				MinMaxValue(a+1,n-1,max,min);
+			}
+		}
+		int main(){
+			int a[5]={1,23,45,3,233};
+			int *max=a;
+			int *min=a;
+			MinMaxValue(a,5,max,min);
+			printf("%d %d",*max,*min);
+			return 0;
+		}
+	这个代码是我用递归求一个整数数组中最大值和最小值写的一段代码。
+
+	此代码的错误之处在于，主函数中名为 max 的指针和名为 min 的指针所指向的是同一地址。所以在 MinMaxValue 函数中，*max 和 *min 的值始终是一样的。（也就是说，你传给函数的是两个指向同一内存的指针，是不是很傻。。。）
+
+	解决也很容易，就是传入两个不同的内存地址就OK：
+
+		int max=a[0];
+		int min=a[0];
+		MinMaxValue(a,5,&max,&min);
+		printf("%d %d",max,min);

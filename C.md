@@ -1,6 +1,6 @@
-# C学习笔记 #
+﻿# C学习笔记 #
 
-
+github desktop try
 
 
 1. ### `char s1[100]="hello";` 与 `char *s2="hello";` 的区别 ##
